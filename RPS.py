@@ -11,30 +11,32 @@ while running:
     def yn(val):
         return val.lower() in yesValues
 
-    rock = ["rock", "Rock", "ROCK", "r", "R"]
-    paper = ["paper", "Paper", "PAPER", "p", "P"]
-    scissors = ["scissors", "Scissors", "SCISSORS", "s", "S", "Scissor", "SCISSOR", "scissor"]
+    rock = ["rock", "r"]
+    paper = ["paper", "p"]
+    scissors = ["scissors", "s", "scissor"]
     humanPlay = 3
     humanMove = ""
     convertedFails = 0
     possibleHumanPlays = [rock, paper, scissors]
     possibleComputerPlays = ["Rock", "Paper", "Scissors"]
     computerMove = possibleComputerPlays[computerPlay]
-    def convertPlays(play, list, playList, avaliblePlays):
+    def convertPlays(list):
 
-        if play in list:
-            humanPlay = playList.index(list)
-            humanMove = avaliblePlays[humanPlay]
-            return(humanMove)
+        if player.lower() in list:
+            global humanPlay
+            global humanMove
+            humanPlay = possibleHumanPlays.index(list)
+            humanMove = possibleComputerPlays[humanPlay]
             
         else:
-            convertedFails =+ 1
-            return(convertedFails)
-    
-    convertPlays(player, rock, possibleHumanPlays, possibleComputerPlays)
-    convertPlays(player, paper, possibleHumanPlays, possibleComputerPlays)
-    convertPlays(player, scissors, possibleHumanPlays, possibleComputerPlays)
-    print(convertedFails)
+            global convertedFails
+            convertedFails += 1
+    convertPlays(rock)
+    print(str(convertedFails) + " rock")
+    convertPlays(paper)
+    print(str(convertedFails) + " paper")
+    convertPlays(scissors)
+    print(str(convertedFails) + " scissors")
     if convertedFails > 2:
         print("Oops, you didn's seem to pick a possible move. Resetting")
         continue
@@ -48,8 +50,8 @@ while running:
     elif computerMove == "Rock" and humanMove == "Scissors" or computerMove == "Paper" and humanMove == "Rock" or computerMove == "Scissors" and humanMove == "Paper":
         print("You Lose!")
     
-    print("You choose " + humanMove + " And the computer Choose " + computerMove)
-    again = input("Play again?")
+    print("You choose " + humanMove + " and the computer Choose " + computerMove)
+    again = input("Play again? ")
     if yn(again):
         continue
     else:
