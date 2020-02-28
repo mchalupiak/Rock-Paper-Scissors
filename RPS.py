@@ -1,10 +1,12 @@
 import random as rd
 
 
+print("Welcome to Rock Paper Scissors, Python Edition!")
+humanScore = 0
+computerScore = 0
 running = True
 while running:    
     
-    print("Welcome to Rock Paper Scissors, Python Edition!")
     player = input("Choose Rock, Paper, or Scissors ")
     computerPlay = rd.randint(0,2)
     yesValues = ["y", "yes", "true", "t"]
@@ -32,11 +34,8 @@ while running:
             global convertedFails
             convertedFails += 1
     convertPlays(rock)
-    print(str(convertedFails) + " rock")
     convertPlays(paper)
-    print(str(convertedFails) + " paper")
     convertPlays(scissors)
-    print(str(convertedFails) + " scissors")
     if convertedFails > 2:
         print("Oops, you didn's seem to pick a possible move. Resetting")
         continue
@@ -46,11 +45,16 @@ while running:
     
     elif humanMove == "Rock" and computerMove == "Scissors" or humanMove == "Paper" and computerMove == "Rock" or humanMove == "Scissors" and computerMove == "Paper":
         print("You Win!")
+        humanScore += 1
+
     
     elif computerMove == "Rock" and humanMove == "Scissors" or computerMove == "Paper" and humanMove == "Rock" or computerMove == "Scissors" and humanMove == "Paper":
         print("You Lose!")
+        computerScore += 1
     
-    print("You choose " + humanMove + " and the computer Choose " + computerMove)
+    print("You choose " + humanMove.lower() + " and The Computer choose " + computerMove.lower())
+    print("Your score is " + str(humanScore))
+    print("The Computer's score is " + str(computerScore))
     again = input("Play again? ")
     if yn(again):
         continue
